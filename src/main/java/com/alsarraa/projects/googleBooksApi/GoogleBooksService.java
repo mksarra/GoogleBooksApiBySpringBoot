@@ -18,7 +18,7 @@ public class GoogleBooksService {
         return null;
     }
 
-    public GoogleBooks save(GoogleBooks book) {
+    public GoogleBooks save(Library book) {
         return googleBooksRepository.insert(book);
     }
 }

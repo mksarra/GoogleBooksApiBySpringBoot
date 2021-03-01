@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/books")
@@ -18,6 +19,7 @@ public class GoogleBooksController {
     private GoogleBooksService googleBooksService;
 
     private final String googleBooksApiUrl = "https://books.googleapis.com/books/v1/";
+    private String api_key = ""; // Put your Api Key
 
 
     // first, will check the book name in db if exist then the method findByBookName in GoogleBooksService will return it as List
@@ -28,22 +30,23 @@ public class GoogleBooksController {
 
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<GoogleBooks> searchBookByName(@PathVariable("name") String bookName) {
-        bookName = bookName.replaceAll(" ", "%20");
-        String url = googleBooksApiUrl + "/volumes?q=" + bookName + "&maxResults=1";
 
         GoogleBooks resultDB = googleBooksService.findByBookName(bookName);
 
         if (resultDB != null) return new ResponseEntity<>(resultDB, HttpStatus.OK);
-        else {
-            RestTemplate restTemplate = new RestTemplate();
 
-            GoogleBooks resultApi = restTemplate.getForObject(url, GoogleBooks.class);
+        bookName = bookName.replaceAll(" ", "%20");
 
-            if (resultApi != null) {
-                return new ResponseEntity(googleBooksService.save(resultApi), HttpStatus.OK);
-            }
-            else new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        String url = googleBooksApiUrl + "/volumes?q=" + bookName + "&maxResults=1" + "&key=" + api_key;
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        Library resultApi = restTemplate.getForObject(url, Library.class);
+
+        if (resultApi != null) {
+
+            return new ResponseEntity(googleBooksService.save(resultApi), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

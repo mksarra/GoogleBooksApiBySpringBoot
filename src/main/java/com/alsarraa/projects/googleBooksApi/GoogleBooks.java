@@ -10,6 +10,7 @@ public class GoogleBooks {
     private String id;
 
     private String bookName;
+
     private String isbn;
 
     public GoogleBooks() {}
@@ -18,10 +19,6 @@ public class GoogleBooks {
         this.id = id;
         this.bookName = bookName;
         this.isbn = isbn;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getBookName() {
@@ -34,5 +31,9 @@ public class GoogleBooks {
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
