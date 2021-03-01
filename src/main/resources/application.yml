@@ -1,0 +1,9 @@
+server:
+  port: 8889
+
+spring:
+  data:
+    mongodb:
+      database: BooksReop
+      host: localhost
+      port: 27017
