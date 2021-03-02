@@ -18,7 +18,7 @@ public class GoogleBooksController {
     private GoogleBooksService googleBooksService;
 
     private final String googleBooksApiUrl = "https://books.googleapis.com/books/v1/";
-    private String api_key = "AIzaSyDZ1XQdU8lRvYjmrYVqFQO2MH1WAKpMhE4"; // Put your Api Key
+    private String api_key = ""; // Put your Api Key
 
 
     // first, will check the book name in db if exist then the method findByBookName in GoogleBooksService will return it as List
