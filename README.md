@@ -10,6 +10,6 @@ Second run application
 ```
 Api URL
 ```shell script
-http://localhost:8889/books/name/{Name}
+http://localhost:8889/books/name/{bookName}
 ```
 ---
