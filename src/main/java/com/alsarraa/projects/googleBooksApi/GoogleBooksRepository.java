@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GoogleBooksRepository extends MongoRepository<GoogleBooks, String> {
+
     GoogleBooks findByBookName(String bookName);
 }
